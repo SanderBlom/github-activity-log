@@ -1,0 +1,17 @@
+{
+  "name": "Github_activity_log",
+  "version": "1.0.0",
+  "description": "Creates an API that returns back the Github activity to specified users.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sander Blomvågnes",
+  "license": "ISC",
+  "dependencies": {
+    "@redis/client": "^1.5.13",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3"
+  }
+}
