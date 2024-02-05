@@ -23,7 +23,7 @@ async function updatePRsInCache() {
                 getOpenPullRequests(username),
                 getClosedPullRequests(username),
             ]);
-            const client = getRedisClient();    
+            const client = await getRedisClient();    
             // Cache the results with appropriate keys
             await client.set(`openPRs:${username}`, JSON.stringify(openPRs), { EX: 7200 });
             await client.set(`closedPRs:${username}`, JSON.stringify(closedPRs), { EX: 7200 });

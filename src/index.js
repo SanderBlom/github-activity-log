@@ -3,7 +3,7 @@ import PR from "./routes/PrRoute.js"
 import index from "./routes/indexRoute.js"
 import invalid from "./routes/invalidRoute.js"
 import { startCronJob } from './utils/updateCache.js';
-import { validateEnv } from './utils/envValidator.js';
+import { validateEnv } from './utils/healthValidation.js';
 
 validateEnv();
 
