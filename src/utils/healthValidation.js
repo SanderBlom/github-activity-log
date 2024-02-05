@@ -14,18 +14,19 @@ export function validateEnv() {
     const missingEnv = requiredEnv.filter(envName => !process.env[envName]);
     if (missingEnv.length > 0) {
         console.error(`Missing required environment variables: ${missingEnv.join(', ')}`);
-        process.exit(1); // Exit the application with an error code
+        return false;
     }
+    else{
+        return true;
+    }  
 }
 
 /**
  * Validates that we can access the Redis server.
  */
 export async function checkRedisLiveliness() {
-    const client = getRedisClient();
+    const client = await getRedisClient();
     await client.set('livelinessProbe', 'ok');
     const value = await client.get('livelinessProbe');
-    await client.disconnect();
     return value === 'ok';
-
 }

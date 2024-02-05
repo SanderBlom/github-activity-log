@@ -2,6 +2,7 @@ import express from 'express'
 import PR from "./routes/PrRoute.js"
 import index from "./routes/indexRoute.js"
 import invalid from "./routes/invalidRoute.js"
+import health from './routes/healthRoute.js';
 import { startCronJob } from './utils/updateCache.js';
 import { validateEnv } from './utils/healthValidation.js';
 
@@ -13,6 +14,7 @@ app.use(express.json())
 // Route handling
 app.use("/", index)
 app.use("/api/pr", PR)
+app.use("/health", health)
 app.use("*", invalid)
 
 const PORT = process.env.SERVER_PORT || 3000
