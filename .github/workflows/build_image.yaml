@@ -1,0 +1,32 @@
+name: Build and Push Custom Docker Image
+
+on:
+  push:
+    branches:
+      - trunk
+  workflow_dispatch:  #Allows manual trigger
+
+jobs:
+  push_to_registries:
+    name: Build and push container image
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push images
+        run: |
+          docker build -t ghcr.io/sanderblom/github-activity-log:latest . 
+          docker tag ghcr.io/sanderblom/github-activity-log:latest ghcr.io/sanderblom/github-activity-log:${{ github.sha }}
+          docker push ghcr.io/sanderblom/github-activity-log:${{ github.sha }}
+          docker push ghcr.io/sanderblom/github-activity-log:latest
