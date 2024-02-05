@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { GetOpenPRs, GetClosedPRs, GetAllPRs } from '../controllers/PullRequestController.js';
+import { GetOpenPRs, GetClosedPRs, GetAllPRs, GetAllHTMLExample } from '../controllers/PullRequestController.js';
 const router = Router();
 
 router.get("/open", async (req, res) => {
@@ -48,5 +48,4 @@ router.get("/", async (req, res) => {
         res.status(500).json({ error: "An error has occurred" });
     }
 });
-
 export default router;
