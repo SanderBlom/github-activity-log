@@ -2,7 +2,7 @@ import { getOpenPullRequests, getClosedPullRequests } from '../services/github.j
 import { getUserNames } from "../utils/getUsernames.js";
 /**
  * Fetches open pull requests for a list of GitHub usernames.
- * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string}>>} A promise that resolves to an array of pull request objects.
+ * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string, repoName: string, orgOrUserName: string}>>}>>} A promise that resolves to an array of pull request objects.
  */
 async function GetOpenPRs() {
     const usernames = getUserNames();
@@ -16,7 +16,7 @@ async function GetOpenPRs() {
 
 /**
  * Fetches closed pull requests for a list of GitHub usernames.
- * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string}>>} A promise that resolves to an array of pull request objects.
+ * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string, repoName: string, orgOrUserName: string}>>}>>} A promise that resolves to an array of pull request objects.
  */
 async function GetClosedPRs() {
     const usernames = getUserNames();
@@ -30,7 +30,7 @@ async function GetClosedPRs() {
 
 /**
  * Fetches closed and open pull requests and combine the results.
- * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string}>>} A promise that resolves to an array of pull request objects.
+ * @returns {Promise<Array<{title: string, url: string, createdAt: string, user: string, state: string, repoName: string, orgOrUserName: string}>>} A promise that resolves to an array of pull request objects.
  */
 async function GetAllPRs() {
 
