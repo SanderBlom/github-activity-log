@@ -4,10 +4,12 @@ let client;
 
 export async function connectRedis() {
     const redisHost = process.env.REDIS_HOST || 'localhost';  // Default to localhost if REDIS_HOST is not set
-    /* */
     const redisPort = process.env.REDIS_PORT || 6379;  // Default to 6379 if REDIS_PORT is not set
-    console.log("Trying to connect to redis on the address: " + redisHost +" on the port: " + redisPort)
-    client = await createClient({
+    const redisPassword = process.env.REDIS_PASSWORD;  // Use REDIS_PASSWORD environment variable, if set
+
+    console.log("Trying to connect to Redis on the address: " + redisHost + " on the port: " + redisPort);
+
+    const connectionOptions = {
         socket: {
             host: redisHost,
             port: redisPort,
@@ -18,7 +20,14 @@ export async function connectRedis() {
                 return Math.min(retries * 50, 1000);
             }
         }
-    });
+    };
+
+    // If a password is provided, add it to the connection options
+    if (redisPassword) {
+        connectionOptions.password = redisPassword;
+    }
+
+    client = await createClient(connectionOptions);
 
     client.on('error', (err) => {
         console.error('Redis Client Error', err);
