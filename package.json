@@ -1,7 +1,7 @@
 {
-  "name": "Github_activity_log",
+  "name": "github-activity-log",
   "version": "1.0.0",
-  "description": "Creates an API that returns back the Github activity to specified users.",
+  "description": "Creates an API that returns back the Github activity for specified users.",
   "main": "index.js",
   "type": "module",
   "scripts": {
