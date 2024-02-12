@@ -3,9 +3,9 @@ import {getUserNames} from "./getUsernames.js";
 let client;
 
 export async function connectRedis() {
-    const redisHost = process.env.REDIS_HOST || 'localhost';  // Default to localhost if REDIS_HOST is not set
-    const redisPort = process.env.REDIS_PORT || 6379;  // Default to 6379 if REDIS_PORT is not set
-    const redisPassword = process.env.REDIS_PASSWORD;  // Use REDIS_PASSWORD environment variable, if set
+    const redisHost = process.env.REDIS_HOST || 'localhost'; 
+    const redisPort = process.env.REDIS_PORT || 6379;  
+    const redisPassword = process.env.REDIS_PASSWORD;
 
     console.log("Trying to connect to Redis on the address: " + redisHost + " on the port: " + redisPort);
 
